@@ -11,6 +11,10 @@ stdenv.mkDerivation rec {
 
   buildInputs = [ makeWrapper ];
 
+  postInstall = ''
+    wrapProgram $out/bin/itksnap \
+      --prefix LD_LIBRARY_PATH : ${out}/lib/snap-3.6.0/
+  '';
 
   meta = {
     description = "Medical Image Segmentation tool";
