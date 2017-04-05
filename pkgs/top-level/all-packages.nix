@@ -966,7 +966,7 @@ with pkgs;
 
   interlock = callPackage ../servers/interlock {};
 
-  itksnap = callPackage ../applications/science/misc/itk-snap {};
+  itk-snap = callPackage ../applications/science/misc/itk-snap {};
 
   jbuilder = callPackage ../development/tools/ocaml/jbuilder {
     inherit (ocaml-ng.ocamlPackages_4_03) ocaml;
