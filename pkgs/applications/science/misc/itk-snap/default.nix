@@ -1,20 +1,22 @@
 
-{stdenv, fetchurl, makeWrapper }:
+# {stdenv, fetchurl, cmake, makeWrapper, itk, qt5 }:
+{ stdenv, fetchurl, cmake, itk, qt5 }:
 
 stdenv.mkDerivation rec {
-  name = "itksnap-3.6.0";
+  ver = "3.6.0";
+  name = "itksnap";
 
   src = fetchurl {
-    url = "mirror://sourceforge/itk-snap/${name}-20170401-Linux-x86_64.tar.gz";
-    sha256 = "ff7cd3f959617e6f13441b7f7ba1677a92eeb155ff17ed8bad06f364f8badda2";
+    url = "mirror://sourceforge/itk-snap/${ver}/${name}-source-${ver}.tar.gz";
+    sha256 = "a21bd0fc31bf8468f347cca636cd4c44a601fc731a91d1c8aef8f7bc389194d1";
   };
 
-  buildInputs = [ makeWrapper ];
+  # nativeBuildInputs = [ cmake makeWrapper ];
+  # buildInputs = [ qt5 itk ];
 
-  postInstall = ''
-    wrapProgram $out/bin/itksnap \
-      --prefix LD_LIBRARY_PATH : ${out}/lib/snap-3.6.0/
-  '';
+  nativeBuildInputs = [ cmake ];
+  buildInputs = [ itk qt5.full ];
+
 
   meta = {
     description = "Medical Image Segmentation tool";
