@@ -1,6 +1,8 @@
 
 # {stdenv, fetchurl, cmake, makeWrapper, itk, qt5 }:
-{ stdenv, fetchurl, cmake, itk, qt5 }:
+{ stdenv, fetchurl, cmake, itk, qt5
+, openglSupport ? false, mesa_noglu, mesa_glu
+}:
 
 stdenv.mkDerivation rec {
   ver = "3.6.0";
@@ -15,7 +17,7 @@ stdenv.mkDerivation rec {
   # buildInputs = [ qt5 itk ];
 
   nativeBuildInputs = [ cmake ];
-  buildInputs = [ itk qt5.full ];
+  buildInputs = [ itk qt5.full mesa_noglu mesa_glu ];
 
 
   meta = {
